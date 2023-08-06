@@ -16,7 +16,7 @@
     "verified": "11.307"
   },
   "esmodules": [
-    "./scripts/token-action-hud-ose.js"
+    "./dist/token-action-hud-ose.min.js"
   ],
   "scripts": [
   ],

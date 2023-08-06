@@ -1,0 +1,15 @@
+.tah-image-custom {
+  /*border-radius: var(--tah-border-radius);
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 0px 8px;
+  clip-path: inset(0px -15px 0px 0px);*/
+  height: var(--tah-button-height);
+  min-width: var(--tah-button-min-width);
+  width: var(--tah-button-min-width);
+  border: 0px;
+  margin-top: 20%;
+  padding: 0;
+}
+
+.custominfo {
+  color: #fff
+}

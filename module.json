@@ -1,0 +1,70 @@
+{
+  "id": "token-action-hud-ose",
+  "title": "Token Action HUD Old-School Essentials",
+  "description": "Token Action HUD is a repositionable HUD of actions for a selected token",
+  "authors": [
+    {
+      "name": "Snagov",
+      "url": "https://github.com/mrcomac"
+    }
+  ],
+  "url": "This is auto replaced",
+  "flags": {},
+  "version": "This is auto replaced",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11.307"
+  },
+  "esmodules": [
+    "./scripts/token-action-hud-ose.js"
+  ],
+  "scripts": [
+  ],
+  "styles": [
+    "./styles/tah-ose.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "languages/en.json"
+    }
+  ],
+  "packs": [],
+  "relationships": {
+    "systems": [
+      {
+        "id": "ose",
+        "type": "system",
+        "compatibility": [
+          {
+            "minimum": "1.9.3",
+            "verified": "1.9.3"
+          }
+        ]
+      }
+    ],
+    "requires": [
+      {
+        "id": "token-action-hud-core",
+        "type": "module",
+        "compatibility": [
+          {
+            "minimum": "1.4.8",
+            "verified": "1.4.16"
+          }
+        ]
+      }
+    ],
+    "optional": [],
+    "flags": {
+      "optional": []
+    }
+  },
+  "socket": false,
+  "manifest": "This is auto replaced",
+  "download": "This is auto replaced",
+  "protected": false,
+  "coreTranslation": false,
+  "library": false
+}

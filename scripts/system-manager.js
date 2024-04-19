@@ -1,7 +1,7 @@
 import { oseActionHandler } from './action-handler.js'
 import { oseRollHandler as Core } from './roll-handler.js'
 import { DEFAULTS } from './defaults.js'
-import { MODULE } from './constants.js'
+import { MODULE, REQUIRED_CORE_MODULE_VERSION } from './constants.js'
 
 export let oseSystemManager = null
 
@@ -53,8 +53,8 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
     const module = game.modules.get(MODULE.ID);
     module.api = {
-        requiredCoreModuleVersion: '1.5',
+        requiredCoreModuleVersion: REQUIRED_CORE_MODULE_VERSION,
         SystemManager: oseSystemManager
     }
-    //Hooks.call('tokenActionHudSystemReady', module)
+    Hooks.call('tokenActionHudSystemReady', module)
 })

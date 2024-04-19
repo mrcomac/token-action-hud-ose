@@ -17,11 +17,34 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             {
                 nestId: 'attributes',
                 id: 'attributes',
+                name: coreModule.api.Utils.i18n('OSE.category.attributes'),
+                groups: [
+                    { ...groups.attributes, nestId: 'attributes_attributes' },
+                ]
+            },
+            {
+                nestId: 'saves',
+                id: 'saves',
+                name: coreModule.api.Utils.i18n('OSE.category.saves'),
+                groups: [
+                    { ...groups.saves, nestId: 'saves_saves' },
+                ]
+            },
+            {
+                nestId: 'abilities',
+                id: 'abilities',
                 name: coreModule.api.Utils.i18n('OSE.category.abilities'),
                 groups: [
-                    { ...groups.abilities, nestId: 'attributes_abilities' },
-                    { ...groups.saves, nestId: 'attributes_saves' },
-                    { ...groups.extra, nestId: 'attributes_extra' }
+                    { ...groups.abilities, nestId: 'abilities_abilities' },
+                ]
+            },
+            {
+                nestId: 'weapons',
+                id: 'weapons',
+                name: coreModule.api.Utils.i18n('OSE.items.Weapons'),
+                groups: [
+                    { ...groups.melee, nestId: 'weapons_melee' },
+                    { ...groups.ranged, nestId: 'weapons_ranged' },
                 ]
             },
             {
@@ -30,12 +53,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 name: coreModule.api.Utils.i18n('OSE.category.inventory'),
                 groups: [
                     { ...groups.armors, nestId: 'inventory_armors' },
-                    { ...groups.weapons, nestId: 'inventory_weapons' },
                     { ...groups.misc, nestId: 'inventory_misc' }
-                    /*{ ...groups.consumables, nestId: 'inventory_consumables' },
-                    { ...groups.tools, nestId: 'inventory_tools' },
-                    { ...groups.containers, nestId: 'inventory_containers' },
-                    { ...groups.loot, nestId: 'inventory_loot' }*/
                 ]
             },
             {
@@ -53,7 +71,15 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                     { ...groups._8thLevelSpells, nestId: 'spells_8th-level-spells' },
                     { ...groups._9thLevelSpells, nestId: 'spells_9th-level-spells' }
                 ]
-            }
+            },
+            {
+                nestId: 'treasures',
+                id: 'treasures',
+                name: coreModule.api.Utils.i18n('OSE.items.Treasure'),
+                groups: [
+                    { ...groups.treasure, nestId: 'treasures_treasures' }
+                ]
+            },
         ],
         groups: groupsArray
     }

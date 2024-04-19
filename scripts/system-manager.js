@@ -1,11 +1,12 @@
-import { ActionHandler } from './action-handler.js'
-import { RollHandler as Core } from './roll-handler.js'
+import { oseActionHandler } from './action-handler.js'
+import { oseRollHandler as Core } from './roll-handler.js'
 import { DEFAULTS } from './defaults.js'
+import { MODULE } from './constants.js'
 
-export let SystemManager = null
+export let oseSystemManager = null
 
 Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
-    SystemManager = class SystemManager extends coreModule.api.SystemManager {
+    oseSystemManager = class OSESystemManager extends coreModule.api.SystemManager {
         /** @override */
         getCategoryManager () {
             return new coreModule.api.CategoryManager()
@@ -13,8 +14,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
         /** @override */
         getActionHandler (categoryManager) {
-            console.log("ACTIONHANDLER")
-            const actionHandler = new ActionHandler(categoryManager)
+            const actionHandler = new oseActionHandler(categoryManager)
             return actionHandler
         }
 
@@ -51,4 +51,13 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             return defaults
         }
     }
+
+    /* STARTING POINT */
+
+    const module = game.modules.get(MODULE.ID);
+    module.api = {
+        requiredCoreModuleVersion: '1.5',
+        SystemManager: oseSystemManager
+    }
+    Hooks.call('tokenActionHudSystemReady', module)
 })

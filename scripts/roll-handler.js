@@ -1,17 +1,15 @@
-export let RollHandler = null
+export let oseRollHandler = null
 
 Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
-    RollHandler = class RollHandler extends coreModule.api.RollHandler {
+    oseRollHandler = class OSERollHandler extends coreModule.api.RollHandler {
     /**
      * Handle Action Event
      * @override
      * @param {object} event
      * @param {string} encodedValue
      */
-        async doHandleActionEvent (event, encodedValue) {
+        async handleActionClick (event, encodedValue) {
             const payload = encodedValue.split('|')
-            console.log("PAYLOAD", payload)
-
             if (payload.length !== 2) {
                 super.throwInvalidValueErr()
             }
@@ -42,6 +40,9 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             switch (actionType) {
             case 'ability':
                 this.#rollAbility(event, actor, actionId)
+                break;
+            case 'attribute':
+                this.#rollAttribute(event, actor, actionId)
                 break
             case 'check':
                 this.#rollAbilityTest(event, actor, actionId)
@@ -57,12 +58,35 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 await this.#toggleEffect(event, actor, actionId)
                 break
             case 'feature':
-            case 'item':
             case 'spell':
             case 'weapon':
+                if (this.isRenderItem()) this.doRenderItem(actor, actionId)
+                else {
+                    this.#useItem(event, actor, actionId, true)
+                }
+                break;
+            case 'item':
             case 'misc':
                 if (this.isRenderItem()) this.doRenderItem(actor, actionId)
-                else this.#useItem(event, actor, actionId)
+                else {
+                    new Dialog({
+                        title: coreModule.api.Utils.i18n('tokenActionHud.ose.consume_dialog.title'),
+                        content: `${coreModule.api.Utils.i18n('tokenActionHud.ose.consume_dialog.content')}<br /><input id="quantityID" type="number" value="1" />`,
+                        buttons: {
+                          button1: {
+                            label: "Yes",
+                            callback: (html) => {this.#useItem(event, actor, actionId, true, html.find("input#quantityID").val())},
+                            icon: `<i class="fas fa-check"></i>`
+                          },
+                          button2: {
+                            label: "No",
+                            callback: () => {this.#useItem(event, actor, actionId, false)},
+                            icon: `<i class="fas fa-times"></i>`
+                          }
+                        }
+                      }).render(true);
+                    
+                }
                 break
             case 'magicItem':
                 this.#rollMagicItem(actor, actionId)
@@ -79,6 +103,19 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         }
 
         /**
+         * Roll Attribute
+         * @private
+         * @param {object} event    The event
+         * @param {object} actor    The actor
+         * @param {string} actionId The action id
+         */
+        #rollAttribute (event, actor, actionId) {
+            if (!actor) return
+            if (!actor.system?.abilities) return
+            actor.rollCheck(actionId, { event })
+        }
+
+        /**
          * Roll Ability
          * @private
          * @param {object} event    The event
@@ -87,9 +124,13 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
          */
         #rollAbility (event, actor, actionId) {
             if (!actor) return
-            if (!actor.system?.abilities) return
-            console.log("ACTION", actionId)
-            actor.rollCheck(actionId, { event })
+            //if (!actor.system?.abilities) return
+            const abilitites = actor.items.filter(el => el.type=='ability')
+            abilitites.forEach((ability) => {
+                if(ability.id == actionId) {
+                    ability.roll()
+                }
+            })
         }
 
         /**
@@ -102,7 +143,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         #rollAbilitySave (event, actor, actionId) {
             if (!actor) return
             if (!actor.system?.abilities) return
-            console.log("ACTION", actionId)
             actor.rollSave(actionId, { event })
         }
 
@@ -127,15 +167,10 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
          */
         #rollMagicItem (actor, actionId) {
             const actionParts = actionId.split('>')
-
             const itemId = actionParts[0]
             const magicEffectId = actionParts[1]
-
             const magicItemActor = MagicItems.actor(actor.id)
-
-            // magicitems module 3.0.0 does not support Item5e#use
             magicItemActor.roll(itemId, magicEffectId)
-
             Hooks.callAll('forceUpdateTokenActionHud')
         }
 
@@ -160,32 +195,30 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
          * @param {string} actionId The action id
          * @returns {object}        The item
          */
-        #useItem (event, actor, actionId) {
+        #useItem (event, actor, actionId, consumeItem, quantity=0) {
             const item = coreModule.api.Utils.getItem(actor, actionId)
 
             if (this.#needsRecharge(item)) {
                 item.rollRecharge()
                 return
             }
-            console.log("ITEM", item)
             if(item.type == 'spell') {
-                if(item.system.cast > 0) {
+                if(item.system.cast > 0 && consumeItem) {
                     return item.spendSpell()
                 }
             } else if(item.type == 'weapon') {
                 return item.rollWeapon()
 
-            } else if(item.system.quantity.value > 0){
+            } else if(item.system.quantity.value > 0 && consumeItem){
                 const newData = {
                     quantity: {
-                        value: item.system.quantity.value-1
+                        value: item.system.quantity.value-quantity
                     }
                   }
                   item.show()
                   return item.update({ system: newData });
             }
             return
-            //return item.use({ event })
         }
 
         /**

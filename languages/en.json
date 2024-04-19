@@ -1,6 +1,10 @@
 {
     "tokenActionHud": {
       "ose": {
+        "consume_dialog": {
+          "content": "Do you want to consume the Item?",
+          "title": "Consume Item"
+        },
         "1stLevelSpells": "1st Level Spells",
         "2ndLevelSpells": "2nd Level Spells",
         "3rdLevelSpells": "3rd Level Spells",

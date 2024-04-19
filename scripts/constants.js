@@ -2,7 +2,7 @@ export const MODULE = {
     ID: 'token-action-hud-ose'
 }
 
-export const REQUIRED_CORE_MODULE_VERSION = '1.4'
+export const REQUIRED_CORE_MODULE_VERSION = '1.5'
 
 export const GROUP = {
     _1stLevelSpells: { id: '1st-level-spells', name: 'tokenActionHud.ose.1stLevelSpells', type: 'system' },
@@ -14,10 +14,12 @@ export const GROUP = {
     _7thLevelSpells: { id: '7th-level-spells', name: 'tokenActionHud.ose.7thLevelSpells', type: 'system' },
     _8thLevelSpells: { id: '8th-level-spells', name: 'tokenActionHud.ose.8thLevelSpells', type: 'system' },
     _9thLevelSpells: { id: '9th-level-spells', name: 'tokenActionHud.ose.9thLevelSpells', type: 'system' },
-    abilities: { id: 'abilities', name: 'OSE.category.attributes', type: 'system' },
-    abilities: { id: 'abilities', name: 'OSE.category.attributes', type: 'system' },
+    attributes: { id: 'attributes', name: 'OSE.category.attributes', type: 'system' },
     saves: { id: 'saves', name: 'OSE.category.saves', type: 'system' },
-    weapons: { id: 'weapon', name: 'OSE.items.Weapons', type: 'system' },
+    melee: { id: 'melee', name: 'OSE.items.Melee', type: 'system' },
+    ranged: { id: 'ranged', name: 'OSE.items.Range', type: 'system' },
+    abilities: { id: 'abilities', name: 'OSE.category.abilities', type: 'system' },
     armors: { id: 'armor', name: 'OSE.items.Armors', type: 'system' },
-    misc: { id: 'misc', name: 'OSE.items.Misc', type: 'system' }
+    misc: { id: 'misc', name: 'OSE.items.Misc', type: 'system' },
+    treasure: { id: 'treasure', name: 'OSE.items.Treasure', type: 'system' }
 }

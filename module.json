@@ -50,8 +50,8 @@
         "type": "module",
         "compatibility": [
           {
-            "minimum": "1.4.8",
-            "verified": "1.4.16"
+            "minimum": "1.5.4",
+            "verified": "1.5.4"
           }
         ]
       }

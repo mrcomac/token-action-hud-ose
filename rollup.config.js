@@ -4,7 +4,7 @@ import terser from '@rollup/plugin-terser'
 
 export default [
     {
-        input: 'scripts/token-action-hud-ose.js',
+        input: 'scripts/system-manager.js',
         plugins: [
             commonjs(),
             resolve({ browser: true })

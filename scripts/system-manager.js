@@ -7,12 +7,12 @@ export let SystemManager = null
 Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
     SystemManager = class SystemManager extends coreModule.api.SystemManager {
         /** @override */
-        doGetCategoryManager () {
+        getCategoryManager () {
             return new coreModule.api.CategoryManager()
         }
 
         /** @override */
-        doGetActionHandler (categoryManager) {
+        getActionHandler (categoryManager) {
             console.log("ACTIONHANDLER")
             const actionHandler = new ActionHandler(categoryManager)
             return actionHandler
@@ -28,7 +28,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         }
 
         /** @override */
-        doGetRollHandler (handlerId) {
+        getRollHandler (handlerId) {
             let rollHandler
             switch (handlerId) {
                 case 'core':
@@ -41,12 +41,12 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         }
 
         /** @override */
-        doRegisterSettings (updateFunc) {
+        registerSettings (updateFunc) {
             // systemSettings.register(updateFunc)
         }
 
         /** @override */
-        async doRegisterDefaultFlags () {
+        async registerDefaults () {
             const defaults = DEFAULTS
             return defaults
         }

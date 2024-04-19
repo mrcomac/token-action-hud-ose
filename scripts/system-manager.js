@@ -21,9 +21,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         /** @override */
         getAvailableRollHandlers () {
             let coreTitle = 'Core OSE'
-            //if (coreModule.api.Utils.isModuleActive('midi-qol')) { coreTitle += ` [supports ${coreModule.api.Utils.getModuleTitle('midi-qol')}]` }
             const choices = { core: coreTitle }
-            //coreModule.api.SystemManager.addHandler(choices, 'obsidian')
             return choices
         }
 
@@ -42,7 +40,6 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
 
         /** @override */
         registerSettings (updateFunc) {
-            // systemSettings.register(updateFunc)
         }
 
         /** @override */
@@ -59,5 +56,5 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         requiredCoreModuleVersion: '1.5',
         SystemManager: oseSystemManager
     }
-    Hooks.call('tokenActionHudSystemReady', module)
+    //Hooks.call('tokenActionHudSystemReady', module)
 })

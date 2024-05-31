@@ -13,6 +13,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
             this.actors = (!this.actor) ? this.#getActors() : [this.actor]
             this.tokens = (!this.token) ? this.#getTokens() : [this.token]
             this.actorType = this.actor?.type
+            
             this.#buildCharacterActions()
         }
         /**
@@ -21,7 +22,9 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
         * @returns {object}
         */
         async #buildCharacterActions() {
-            this.#buildAttributes('attribute', 'attributes')
+            if (this.actorType === 'character') {
+                this.#buildAttributes('attribute', 'attributes')
+            }
             this.#buildSaves('save', 'saves')
             this.#buildAbilities('ability', 'abilities')
             this.#buildSpells()

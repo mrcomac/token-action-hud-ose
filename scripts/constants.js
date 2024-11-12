@@ -2,7 +2,7 @@ export const MODULE = {
     ID: 'token-action-hud-ose'
 }
 
-export const REQUIRED_CORE_MODULE_VERSION = '1.5'
+export const REQUIRED_CORE_MODULE_VERSION = '2.0'
 
 export const GROUP = {
     _1stLevelSpells: { id: '1st-level-spells', name: 'tokenActionHud.ose.1stLevelSpells', type: 'system' },

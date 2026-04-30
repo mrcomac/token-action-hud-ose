@@ -203,7 +203,7 @@ Hooks.once('tokenActionHudCoreApiReady', async (coreModule) => {
                 return
             }
             if(item.type == 'spell') {
-                if(item.system.cast > 0 && consumeItem) {
+                if(item.system.cast >= 0 && consumeItem) {
                     return item.spendSpell()
                 }
             } else if(item.type == 'weapon') {

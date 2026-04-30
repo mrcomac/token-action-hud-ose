@@ -9,6 +9,8 @@ jobs:
   create-tag-and-release:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -53,7 +55,7 @@ jobs:
           git config --global user.email "github-actions@github.com"
 
           git tag $TAG_NAME
-          git push https://x-access-token:${{ secrets.GLOBAL_REPO_KEY }}@github.com/${{ github.repository }}.git $TAG_NAME
+          git push origin $TAG_NAME
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

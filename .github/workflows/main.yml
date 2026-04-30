@@ -46,10 +46,11 @@ jobs:
         name: ${{ github.event.release.name }}
         draft: ${{ github.event.release.unpublished }}
         prerelease: ${{ github.event.release.prerelease }}
-        token: ${{ secrets.REPO_SEC }}
+        token: ${{ secrets.GLOBAL_REPO_KEY }}
         artifacts: './module.json, ./module.zip'
         tag: ${{ github.event.release.tag_name }}
         body: ${{ github.event.release.body }}
+  
     # Publish version to foundry
     - name: Get Module ID
       id: moduleID
@@ -71,10 +72,10 @@ jobs:
       with:
         path: "./module.json"
         prop_path: "compatibility.verified"
-    # Submit to foundry
+  
     - name: Submit package to FoundryVTT Package Release API
       run: |
-        curl -X POST "https://api.foundryvtt.com/_api/packages/release_version/" \
+        curl -X POST "https://foundryvtt.com/_api/packages/release_version/" \
           -H "Content-Type: application/json" \
           -H "Authorization: ${{ secrets.FOUNDRYVTT_RELEASE_TOKEN }}" \
           -d '{
@@ -91,3 +92,4 @@ jobs:
               }
             }
           }'
+

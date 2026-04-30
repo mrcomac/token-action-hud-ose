@@ -1,0 +1,102 @@
+{
+    "tokenActionHud": {
+      "ose": {
+        "consume_dialog": {
+          "content": "是否消耗此物品？",
+          "title": "消耗物品"
+        },
+        "1stLevelSpells": "1阶法术",
+        "2ndLevelSpells": "2阶法术",
+        "3rdLevelSpells": "3阶法术",
+        "4thLevelSpells": "4阶法术",
+        "5thLevelSpells": "5阶法术",
+        "6thLevelSpells": "6阶法术",
+        "7thLevelSpells": "7阶法术",
+        "8thLevelSpells": "8阶法术",
+        "9thLevelSpells": "9阶法术",
+        "abilities": "属性",
+        "activeFeatures": "激活特性",
+        "artifact": "奇物",
+        "artificerInfusions": "奇械师注法",
+        "atWillSpells": "随意法术",
+        "backgroundFeatures": "背景特性",
+        "bonusActions": "奖励动作",
+        "cantrips": "戏法",
+        "channelDivinity": "引导神力",
+        "check": "检定",
+        "checks": "检定",
+        "classFeatures": "职业特性",
+        "common": "通用",
+        "condition": "状态",
+        "conditions": "状态",
+        "crewActions": "船员行动",
+        "defensiveTactics": "防守战术",
+        "eldritchInvocations": "魔能祈唤",
+        "elementalDisciplines": "法门",
+        "feats": "专长",
+        "fightingStyles": "战斗风格",
+        "huntersPrey": "猎物",
+        "innateSpells": "先天法术",
+        "item": "物品",
+        "kiAbilities": "气能力",
+        "lair": "巢穴",
+        "lairActions": "巢穴动作",
+        "legendary": "传奇",
+        "legendaryActions": "传奇动作",
+        "magicItems": "魔法物品",
+        "maneuvers": "战技",
+        "metamagicOptions": "超魔选项",
+        "monsterFeatures": "怪物特性",
+        "multiattacks": "多重攻击",
+        "otherActions": "其他动作",
+        "pactBoons": "魔契恩泽",
+        "pactSpells": "魔契法术",
+        "passiveFeatures": "被动特性",
+        "psionicPowers": "灵能",
+        "raceFeatures": "种族特性",
+        "rare": "珍惜",
+        "rests": "休息",
+        "rollInitiative": "投骰先攻",
+        "runes": "符文",
+        "skill": "技能",
+        "skills": "技能",
+        "superiorHuntersDefense": "高效猎人防术",
+        "uncommon": "罕见",
+        "veryRare": "极珍惜",
+        "settings": {
+          "abbreviateSkills": {
+            "hint": "将技能与属性名称缩写为三字符",
+            "name": "缩写技能与属性名称"
+          },
+          "displaySpellInfo": {
+            "hint": "在法术名称旁边显示成分、专注、仪式",
+            "name": "显示法术信息"
+          },
+          "showItemsWithoutActivationCosts": {
+            "hint": "显示不激活消耗的物品",
+            "name": "显示非激活物品"
+          },
+          "showSlowActions": {
+            "hint": "显示超出一轮的动作",
+            "name": "显示缓慢动作"
+          },
+          "showUnchargedItems": {
+            "hint": "显示耗尽充能次数的物品",
+            "name": "显示无充能物品"
+          },
+          "showUnequippedItems": {
+            "hint": "显示未装备物品",
+            "name": "显示未装备物品"
+          },
+          "showUnequippedItemsNpcs": {
+            "hint": "显示 NPC 未装备物品",
+            "name": "显示 NPC 未装备物品"
+          },
+          "showUnpreparedSpells": {
+            "hint": "显示未装备法术",
+            "name": "显示未装备法术"
+          }
+        }
+      }
+    }
+  }
